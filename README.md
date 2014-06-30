@@ -1,4 +1,0 @@
-NinjOS
-======
-
-My ComputerCraft OS
