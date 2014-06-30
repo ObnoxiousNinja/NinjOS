@@ -1,0 +1,62 @@
+--[[ 
+Author: Obnoxious_Ninja
+File: startup
+Purpose: To provide a password lock for computers
+Compatibility: Advanced computers
+--]]
+
+os.loadAPI("GUI_API")
+
+background = 32768
+term.clear()
+
+term.setCursorPos(1, 1)
+print("LockTite Premium v1.3.2")
+print("Property of AjinnDA")
+
+write("Username: ")
+username = read()
+
+write("Password: ")
+password = read("*")
+
+term.setBackgroundColor(background)
+if username == "test" and password == "test" then
+  term.clear()
+  term.setCursorPos(1, 1)
+  term.setTextColor(32)
+  print("Welcome back, "..username.."!\n")
+  sleep(1)
+  print("Logging in...")
+  sleep(1)
+  GUI_API.drawDesktopStartup()
+  sleep(1)
+  
+  if pocket then
+    shell.run("OS.MAIN_POCKET")
+  else
+    shell.run("OS.MAIN")
+  end
+  
+  term.clear()
+  term.setCursorPos(1, 1)
+  
+  else
+    term.clear()
+    term.setCursorPos(1,1)
+    term.setTextColor(colors.red)
+    print("Incorrect username or password!")
+    sleep(1)
+    print("Go back? (y/n)")
+    answer = read()
+    
+	if answer == "y" then
+		term.clear()
+		term.setCursorPos(1, 1)
+		term.setTextColor(1)
+		shell.run("startup")
+		
+		else
+			os.shutdown()
+    end
+  end
