@@ -1,0 +1,98 @@
+--[[
+Author: Obnoxious_Ninja
+File: OS.MAIN
+Purpose: A component in my custom Operating System
+Compatibility: Advanced Computers
+--]]
+
+os.loadAPI("GUI_API")
+
+slc = 0
+background = 32768
+term.setBackgroundColor(background)
+term.clear()
+term.clear()
+contextX = 0
+contextY = 0
+
+GUI_API.drawDesktop()
+
+while true do
+local event, button, x, y = os.pullEventRaw()
+  if slc == 0 then
+    if event == "mouse_click" then
+      if x >= 2 and x <= 8 and y == 1 and button == 1 then --Start menu
+        GUI_API.drawMenuStart()
+        slc = 1
+		
+	  elseif x >= 9 and x <= 16 and y == 1 and button == 1 then --Files menu
+		GUI_API.drawMenuFile()
+		slc = 1
+		
+	  elseif x >= 17 and x <= 25 and y == 1 and button == 1 then --Console
+	    shell.run()
+		slc = 1
+		
+	  elseif x >= 2 and x <= 5 and y >= 3 and y <= 9 and button == 1 then
+        shell.run("file")
+		
+	  elseif x >= 1 and y >=2 and button == 2 then slc = 2
+            if x >= 38 then
+            contextX = 38
+            end
+            if y >= 14 then
+            contextY = 14
+            end
+            if x <= 38 then
+            contextX = x
+            end
+            if y <= 14 then
+            contextY = y
+            end
+            GUI_API.drawMenuContext(contextX, contextY)
+        else
+        GUI_API.drawDesktop()
+      end
+   end
+	
+   elseif slc == 1 then
+    if x >= 1 and x <= 11 and y == 3 and button == 1 then slc = 0 --For Shutdown button
+      os.shutdown()
+	   
+      elseif x >= 1 and x <= 11 and y == 4 and button == 1 then slc = 0 --For Restart button
+        os.reboot()
+		
+	  elseif x >= 1 and x <= 11 and y == 5 and button == 1 then slc = 0 --For the Open button
+	    shell.run("word")
+		
+	  elseif x >= 1 and x <= 11 and y == 6 and button == 1 then slc = 0 --For the New account button
+	    shell.run("new_account")
+		
+	 -- elseif x >= 1 and x <= 11 and y == 3 and button == 1 then slc = 0
+		
+      else
+        slc = 0
+        GUI_API.drawDesktop()
+    end
+	  elseif slc == 2 then
+        if x >= contextX and x <= contextX+13 and y == contextY+1 and button == 1 then slc = 0 --Edit GUI
+          shell.run("edit", "GUI_API")
+          GUI_API.drawDesktop()
+		
+          elseif x >= contextX and x <= contextX+13 and y == contextY+2 and button == 1 then slc = 0 --Edit Background
+            shell.run("paint", ".background")
+			GUI_API.drawDesktop()
+			
+		  elseif x >= contextX and x <= contextX+13 and y == contextY+3 and button == 1 then slc = 0 --Edit icon
+            shell.run("paint", ".icons")
+			GUI_API.drawDesktop()	
+			
+		  elseif x >= contextX and x <= contextX+13 and y == contextY+4 and button == 1 then slc = 0 --File Manager
+		    shell.run("file")
+            GUI_API.drawDesktop()
+			
+          else slc = 0
+            GUI_API.drawDesktop()
+      end
+  end
+end
