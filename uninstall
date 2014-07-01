@@ -1,0 +1,21 @@
+--[[
+Author: Obnoxious_Ninja
+File: install
+Purpose: A component in my custom Operating System
+Compatibility: Advanced Computers
+--]]
+
+term.clear()
+term.setCursorPos(1, 1)
+print("Are you sure you want to uninstall NinjOS? (y/n)")
+input = read()
+
+sleep(1)
+if input == "y" then
+  fs.delete("NinjOS")
+  sleep(1)
+  shell.run("startup")
+  else
+    print("Running NinjOS")
+	shell.run("startup")
+end
