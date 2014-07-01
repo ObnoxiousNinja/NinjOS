@@ -5,13 +5,15 @@ Purpose: A component in my custom Operating System
 Compatibility: Advanced Computers
 --]]
 
-os.loadAPI("GUI_API")
+os.loadAPI("NinjOS/GUI_API")
 
 slc = 0
 background = 32768
+
 term.setBackgroundColor(background)
 term.clear()
 term.clear()
+
 contextX = 0
 contextY = 0
 
@@ -25,9 +27,9 @@ local event, button, x, y = os.pullEventRaw()
         GUI_API.drawMenuStart()
         slc = 1
 		
-	  elseif x >= 9 and x <= 16 and y == 1 and button == 1 then --Files menu
+	  --[[elseif x >= 9 and x <= 16 and y == 1 and button == 1 then --Files menu
 		GUI_API.drawMenuFile()
-		slc = 1
+		slc = 1]]
 		
 	  elseif x >= 17 and x <= 25 and y == 1 and button == 1 then --Console
 	    shell.run("CraftOS")
@@ -71,6 +73,9 @@ local event, button, x, y = os.pullEventRaw()
 		
 	  elseif x >= 1 and x <= 11 and y == 6 and button == 1 then slc = 0 --For the New account button
 	    shell.run("new_account")
+		
+      elseif x >= 1 and x <= 11 and y == 8 and button == 1 then slc = 0 --For the Uninstall button
+	    shell.run("uninstall")
 		
       else
         slc = 0
