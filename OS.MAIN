@@ -30,24 +30,28 @@ local event, button, x, y = os.pullEventRaw()
 		slc = 1
 		
 	  elseif x >= 17 and x <= 25 and y == 1 and button == 1 then --Console
-	    shell.run()
+	    shell.run("CraftOS")
 		slc = 1
 		
-	  elseif x >= 2 and x <= 5 and y >= 3 and y <= 9 and button == 1 then
+      elseif x >= 27 and x <= 33 and y == 1 and button == 1 then --Games
+	    GUI_API.drawMenuGames()
+		slc = 1
+		
+	  elseif x >= 2 and x <= 5 and y >= 3 and y <= 9 and button == 1 then --Icon
         shell.run("file")
 		
 	  elseif x >= 1 and y >=2 and button == 2 then slc = 2
             if x >= 38 then
-            contextX = 38
+              contextX = 38
             end
             if y >= 14 then
-            contextY = 14
+              contextY = 14
             end
             if x <= 38 then
-            contextX = x
+              contextX = x
             end
             if y <= 14 then
-            contextY = y
+              contextY = y
             end
             GUI_API.drawMenuContext(contextX, contextY)
         else
@@ -67,8 +71,6 @@ local event, button, x, y = os.pullEventRaw()
 		
 	  elseif x >= 1 and x <= 11 and y == 6 and button == 1 then slc = 0 --For the New account button
 	    shell.run("new_account")
-		
-	 -- elseif x >= 1 and x <= 11 and y == 3 and button == 1 then slc = 0
 		
       else
         slc = 0
