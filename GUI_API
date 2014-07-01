@@ -23,6 +23,9 @@ function titleBar() --Main title bar
   
   term.setCursorPos(17, 1)
   print("[Console]")
+  
+  term.setCursorPos(27, 1)
+  print("[Games]")
 end
 
 function titleBarNew() --New Account title bar
@@ -246,4 +249,26 @@ function drawMenuNew()
   
   term.setCursorPos(1, 8)
   print("--------------")
+end
+
+function drawMenuGames() --Start menu
+  term.setTextColor(1)
+  
+  term.setCursorPos(27, 2)
+  print("------------")
+  
+  term.setCursorPos(27, 3)
+  print("| Shutdown |")
+  
+  term.setCursorPos(27, 4)
+  print("| Restart  |")
+  
+  term.setCursorPos(27, 5)
+  print("| FNV Term |")
+  
+  term.setCursorPos(27, 6)
+  print("|          |") --Nether's game here
+  
+  term.setCursorPos(27, 7)
+  print("------------")
 end
