@@ -5,11 +5,13 @@ Purpose: A component in my custom Operating System
 Compatibility: Advanced Computers
 --]]
 
-titleBarC = 8
+titleBarC = 2048
 titleBarTC = 1
 background = 32768
 
 --DO NOT TOUCH ANYTHING BELOW THIS LINE!
+version = "v1.2a"
+
 function titleBar() --Main title bar
   term.setCursorPos(1, 1)
   term.setBackgroundColor(titleBarC)
@@ -19,7 +21,7 @@ function titleBar() --Main title bar
   print("[Start]")
   
   term.setCursorPos(9, 1)
-  print("[Files]")
+  print("[Utils]")
   
   term.setCursorPos(17, 1)
   print("[Console]")
@@ -64,9 +66,9 @@ function drawDesktop() --For the main page
   term.setCursorPos(27, 18)
   print("Legal Property of AjinnDa")
   
-  term.setBackgroundColor(32768) --Directory
+  term.setBackgroundColor(32768) --Version number
   term.setCursorPos(27, 19)
-  print("Path: MAIN/")
+  print("Version: "..version)
   
   titleBar()
   
@@ -87,9 +89,9 @@ function drawDesktopStartup() --For the startup page
   term.setCursorPos(27, 19)
   print("Legal Property of AjinnDa")
   
-  term.setBackgroundColor(32768) --Directory
+  term.setBackgroundColor(32768) --Version number
   term.setCursorPos(27, 19)
-  print("Path: MAIN/STARTUP")
+  print("Version: "..version)
   
   titleBar()
 end
@@ -105,9 +107,9 @@ function drawDesktopWord() --For the word page
   term.setCursorPos(27, 19)
   print("Legal Property of AjinnDa")
   
-  term.setBackgroundColor(32768) --Directory
+  term.setBackgroundColor(32768) --Version number
   term.setCursorPos(27, 19)
-  print("Path: MAIN/WORD")
+  print("Version: "..version)
   
   titleBarWord()
   
@@ -128,9 +130,9 @@ function drawDesktopNew() --For New Account page
   term.setCursorPos(27, 19)
   print("Legal Property of AjinnDa")
   
-  term.setBackgroundColor(32768) --Directory
+  term.setBackgroundColor(32768) --Version number
   term.setCursorPos(27, 19)
-  print("Path: MAIN/NEW")
+  print("Version: "..version)
   
   titleBarNew()
   
@@ -153,12 +155,9 @@ function drawMenuStart() --Start menu
   print("| Restart  |")
   
   term.setCursorPos(1, 5)
-  print("| Word     |")
-  
-  term.setCursorPos(1, 6)
   print("| New      |")
   
-  term.setCursorPos(1, 7)
+  term.setCursorPos(1, 6)
   print("------------")
 end
 
@@ -258,17 +257,27 @@ function drawMenuGames() --Start menu
   print("------------")
   
   term.setCursorPos(27, 3)
-  print("| Shutdown |")
+  print("| Maze 3D  |")
   
   term.setCursorPos(27, 4)
-  print("| Restart  |")
+  print("| Redirect |")
   
   term.setCursorPos(27, 5)
-  print("| FNV Term |")
+  print("------------")
+end
+
+function drawMenuUtils() --Utils menu
+  term.setTextColor(1)
   
-  term.setCursorPos(27, 6)
-  print("|          |") --Nether's game here
+  term.setCursorPos(9, 2)
+  print("------------")
   
-  term.setCursorPos(27, 7)
+  term.setCursorPos(9, 3)
+  print("|NPaintPro |")
+  
+  term.setCursorPos(9, 4)
+  print("|LuaIDE    |")
+  
+  term.setCursorPos(9, 5)
   print("------------")
 end
