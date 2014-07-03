@@ -52,10 +52,10 @@ function drawDesktop() --For the main page
   term.setBackgroundColor(background)
   term.clear()
   
-  backgroundImage = paintutils.loadImage(".background") --Logo
+  backgroundImage = paintutils.loadImage("NinjOS/.background") --Logo
   paintutils.drawImage(backgroundImage, 4, 3)
   
-  icon = paintutils.loadImage(".icons") --Item icons
+  icon = paintutils.loadImage("NinjOS/.icons") --Item icons
   paintutils.drawImage(icon, 2, 4)
   term.setTextColor(1)
   term.setCursorPos(2, 9)
@@ -82,7 +82,7 @@ function drawDesktopStartup() --For the startup page
   term.setBackgroundColor(background)
   term.clear()
   
-  backgroundImage = paintutils.loadImage(".background") --Logo
+  backgroundImage = paintutils.loadImage("NinjOS/.background") --Logo
   paintutils.drawImage(backgroundImage, 4, 3)
   
   term.setBackgroundColor(32768) --Property claim
@@ -100,7 +100,7 @@ function drawDesktopWord() --For the word page
   term.setBackgroundColor(background)
   term.clear()
   
-  backgroundImage = paintutils.loadImage(".background") --Logo
+  backgroundImage = paintutils.loadImage("NinjOS/.background") --Logo
   paintutils.drawImage(backgroundImage, 4, 3)
   
   term.setBackgroundColor(32768) --Property claim
@@ -123,7 +123,7 @@ function drawDesktopNew() --For New Account page
   term.setBackgroundColor(background)
   term.clear()
   
-  backgroundImage = paintutils.loadImage(".background") --Logo
+  backgroundImage = paintutils.loadImage("NinjOS/.background") --Logo
   paintutils.drawImage(backgroundImage, 4, 3)
   
   term.setBackgroundColor(32768) --Property claim
@@ -257,7 +257,7 @@ function drawMenuGames() --Start menu
   print("------------")
   
   term.setCursorPos(27, 3)
-  print("| Maze 3D  |")
+  print("| Worm     |")
   
   term.setCursorPos(27, 4)
   print("| Redirect |")
