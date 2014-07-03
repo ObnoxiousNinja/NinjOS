@@ -1,0 +1,17 @@
+--[[
+Author: Obnoxious_Ninja
+File: nPaintPro_start
+Purpose: A component in my custom Operating System
+Compatibility: Advanced Computers
+--]]
+
+term.setCursorPos(9, 6)
+print("File name: ")
+term.setCursorPos(9, 6)
+name = read()
+
+if fs.exists(name) then
+  print("That file already exists!")
+  else
+    shell.run("nPaintPro", "-a", name)
+end
