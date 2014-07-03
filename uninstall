@@ -17,5 +17,5 @@ if input == "y" then
   shell.run("startup")
   else
     print("Running NinjOS")
-	shell.run("startup")
+	shell.run("openOS")
 end
