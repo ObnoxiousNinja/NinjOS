@@ -1,9 +1,7 @@
---[[ 
-Author: GravityScore
-File: LuaIDE
-Purpose: A component in my Operating system
-Compatibility: Advanced computers
---]]
+--  
+--  Lua IDE
+--  Made by GravityScore
+--  
 
 --  -------- Variables
 
@@ -33,8 +31,8 @@ local curLanguage = {}
 local event_distract = "luaide_distractionEvent"
 
 -- Locations
---local updateURL = "https://raw.github.com/GravityScore/LuaIDE/master/luaide.lua"
-local ideLocation = "/" .. shell.getRunningProgram()
+local updateURL = "https://raw.github.com/GravityScore/LuaIDE/master/luaide.lua"
+-- ideLocation = "/" .. shell.getRunningProgram()
 local themeLocation = "/.LuaIDE-Theme"
 
 local function isAdvanced() return term.isColor and term.isColor() end
@@ -239,7 +237,6 @@ local normalTheme = {
 	comment = "white"
 }
 
---[[
 local availableThemes = {
 	{"Water (Default)", "https://raw.github.com/GravityScore/LuaIDE/master/themes/default.txt"},
 	{"Fire", "https://raw.github.com/GravityScore/LuaIDE/master/themes/fire.txt"},
@@ -251,7 +248,6 @@ local availableThemes = {
 	{"Night", "https://raw.github.com/GravityScore/LuaIDE/master/themes/night.txt"},
 	{"Original", "https://raw.github.com/GravityScore/LuaIDE/master/themes/original.txt"},
 }
-]]--
 
 local function loadTheme(path)
 	local f = io.open(path)
@@ -364,10 +360,10 @@ local function prompt(list, dir, isGrid)
 		elseif e == "key" and but == key2 and ((err == true and sel < #list - 1) or (sel < #list)) then
 			sel = sel + 1
 			draw(sel)
-		elseif isGrid and e == "key" and but == 203 and sel > 2 and #list == 4 then
+		elseif isGrid and e == "key" and but == 203 and sel > 2 then
 			sel = sel - 2
 			draw(sel)
-		elseif isGrid and e == "key" and but == 205 and sel < 3 and #list == 4 then
+		elseif isGrid and e == "key" and but == 205 and sel < 3 then
 			sel = sel + 2
 			draw(sel)
 		elseif e == "mouse_click" then
@@ -494,7 +490,7 @@ end
 
 --  -------- Saving and Loading
 
---[[local function download(url, path)
+local function download(url, path)
 	for i = 1, 3 do
 		local response = http.get(url)
 		if response then
@@ -510,7 +506,7 @@ end
 	end
 
 	return false
-end]]
+end
 
 local function saveFile(path, lines)
 	local dir = path:sub(1, path:len() - fs.getName(path):len())
@@ -1965,9 +1961,8 @@ end
 
 
 --  -------- Settings
-
-local function update()
 --[[
+local function update()
 	local function draw(status)
 		title("LuaIDE - Update")
 		term.setBackgroundColor(colors[theme.prompt])
@@ -2034,20 +2029,13 @@ local function update()
 			break
 		end
 	end
-]]--
 
 	return "settings"
 end
-
+]]
 local function changeTheme()
 	title("LuaIDE - Theme")
-	term.setCursorPos(1, 7)
-	centerPrint("Themes are not available on the")
-	centerPrint("treasure disk version of LuaIDE!")
-	centerPrint("Download the full program from the")
-	centerPrint("ComputerCraft Forums!")
 
---[[
 	if isAdvanced() then
 		local disThemes = {"Back"}
 		for _, v in pairs(availableThemes) do table.insert(disThemes, v[1]) end
@@ -2097,17 +2085,16 @@ local function changeTheme()
 		centerPrint("Themes are not available on")
 		centerPrint("normal computers!")
 	end
-]]--
 end
 
 local function settings()
 	title("LuaIDE - Settings")
 
-	local opt = prompt({{"Change Theme", w/2 - 17, 8}, {"Return to Menu", w/2 - 19, 13},
-		--[[{"Check for Updates", w/2 + 2, 8},]] {"Exit IDE", w/2 + 2, 13, bg = colors[theme.err], 
+	local opt = prompt({{"Change Theme", w/2 - 17, 8}, {"Return to Menu", w/2 - 22, 13},
+		{"Check for Updates", w/2 + 2, 8}, {"Exit IDE", w/2 + 2, 13, bg = colors[theme.err], 
 		highlight = colors[theme.errHighlight]}}, "vertical", true)
 	if opt == "Change Theme" then return changeTheme()
---	elseif opt == "Check for Updates" then return update()
+	elseif opt == "Check for Updates" then return update()
 	elseif opt == "Return to Menu" then return "menu"
 	elseif opt == "Exit IDE" then return "exit" end
 end
@@ -2214,7 +2201,4 @@ term.clear()
 term.setCursorPos(1, 1)
 centerPrint("Thank You for Using Lua IDE " .. version)
 centerPrint("Made by GravityScore")
-
---Added by Obnoxious_Ninja
-sleep(2)
 shell.run("OS.MAIN")
