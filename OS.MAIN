@@ -5,14 +5,13 @@ Purpose: A component in my custom Operating System
 Compatibility: Advanced Computers
 --]]
 
-os.loadAPI("GUI_API")
+os.loadAPI("NinjOS/GUI_API")
 
 slc = 0
 background = 32768
 
+term.clear()
 term.setBackgroundColor(background)
-term.clear()
-term.clear()
 
 contextX = 0
 contextY = 0
@@ -34,6 +33,7 @@ local event, button, x, y = os.pullEventRaw()
 	  elseif x >= 17 and x <= 25 and y == 1 and button == 1 then --Console
 	    local tabID = multishell.launch({}, "rom/programs/shell")
 		multishell.setTitle(tabID, "CraftOS")
+		multishell.setFocus(tabID)
 		
       elseif x >= 27 and x <= 33 and y == 1 and button == 1 then --Games
 	    GUI_API.drawMenuGames()
@@ -62,7 +62,6 @@ local event, button, x, y = os.pullEventRaw()
    end
 	
    elseif slc == 1 then
-   
 		--Start menu
     if x >= 1 and x <= 11 and y == 3 and button == 1 then slc = 0 --For Shutdown button
       os.shutdown()
@@ -78,17 +77,25 @@ local event, button, x, y = os.pullEventRaw()
 	  
 		--Utils menu
 	elseif x >= 10 and x <= 17 and y == 3 and button == 1 then slc = 0
-	  shell.run("nPaintPro_start")
+	  local tabID = multishell.launch({}, "NinjOS/nPaintPro_start")
+	  multishell.setTitle(tabID, "NPaintPro")
+	  multishell.setFocus(tabID)
 	  
 	elseif x >= 10 and x <= 17 and y == 4 and button == 1 then slc = 0
-	  shell.run("LuaIDE")
+	  local tabID = multishell.launch({}, "NinjOS/LuaIDE")
+	  multishell.setTitle(tabID, "LuaIDE")
+	  multishell.setFocus(tabID)
 		
 		--Game menu
-	elseif x >= 27 and x <= 33 and y == 3 and button == 1 then slc = 0 --For the FNV Term button
-	  shell.run("fnv")
+	elseif x >= 27 and x <= 33 and y == 3 and button == 1 then slc = 0 --For the Worm button
+	  local tabID = multishell.launch({}, "rom/programs/fun/worm")
+	  multishell.setTitle(tabID, "Worm")
+	  multishell.setFocus(tabID)
 		
     elseif x >= 27 and x <= 33 and y == 4 and button == 1 then slc = 0 --For the Redirect button
-	  shell.run("redirection")
+	  local tabID = multishell.launch({}, "rom/programs/fun/advanced/redirection")
+	  multishell.setTitle(tabID, "Redirection")
+	  multishell.setFocus(tabID)
 	
     else slc = 0
       GUI_API.drawDesktop()
