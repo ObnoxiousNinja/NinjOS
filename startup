@@ -5,7 +5,7 @@ Purpose: A component in my Operating system
 Compatibility: Advanced computers
 --]]
 
-os.loadAPI("GUI_API")
+os.loadAPI("NinjOS/GUI_API")
 
 os.pullEvent = os.pullEventRaw
 
@@ -64,10 +64,7 @@ if checkRednet() then
         sleep(1)
         print("Logging in...")
         sleep(1)
-		shell.run("NinjOS/OS.MAIN")
-	    
-		--term.clear()
-        --term.setCursorPos(1, 1)
+		shell.run("OS.MAIN")
 	
     else
       term.clear()
@@ -82,7 +79,7 @@ if checkRednet() then
 	  term.clear()
 	  term.setCursorPos(1, 1)
 	  term.setTextColor(1)
-	  shell.run("openOS")
+	  shell.run("startup")
 		
 	  else
 		os.shutdown()
