@@ -5,9 +5,9 @@ Purpose: A component in my custom Operating System
 Compatibility: Advanced Computers
 --]]
 
-term.setCursorPos(9, 6)
+term.setCursorPos(1, 1)
 print("File name: ")
-term.setCursorPos(9, 6)
+term.setCursorPos(12, 1)
 name = read()
 
 if fs.exists(name) then
