@@ -7,11 +7,39 @@ Compatibility: Advanced Computers
 
 os.loadAPI("GUI_API")
 
+--# create a user
+local function createUser( uname, pword )
+  --# the user already exists
+  if users[uname] then
+        return false, "This user already exists!"
+  end
+  --# save the password into the user table
+  users[uname] = hash.sha256( pword .. SALT ) --# where hash is the name of GravityScore's API on the file system
+  return true
+end
+
+--# remove a user
+local function removeUser( uname, pword )
+  --# the user doesn't exist
+  if not users[uname] then
+        return false, "This user does not exist!"
+  end
+  --# the passwords do not match
+  if users[uname] ~= hash.sha256( pword .. SALT ) then
+        return false, "Incorrect password.  Cannot remove account."
+  end
+  --# remove the user
+  users[uname] = nil
+  return true
+end
+
 slc = 0
 background = 32768
+
 term.setBackgroundColor(background)
 term.clear()
 term.clear()
+
 contextX = 0
 contextY = 0
 
@@ -59,8 +87,6 @@ local event, button, x, y = os.pullEventRaw()
 		
 	  elseif x >= 1 and x <= 11 and y == 7 and button == 1 then slc = 0 --For the Back button
 	    shell.run("OS.MAIN")
-		
-	 -- elseif x >= 1 and x <= 11 and y == 3 and button == 1 then slc = 0
 		
       else
         slc = 0
