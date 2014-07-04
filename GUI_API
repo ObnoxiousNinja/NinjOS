@@ -27,6 +27,7 @@ Black: 32768
 
 titleBarC = 2048
 titleBarTC = 1
+menuBoxTC = 1
 background = 32768
 
 --DO NOT TOUCH ANYTHING BELOW THIS LINE!
@@ -163,7 +164,8 @@ function drawDesktopNew() --For New Account page
 end
 
 function drawMenuStart() --Start menu
-  term.setTextColor(1)
+  term.setBackgroundColor(menuBoxC)
+  term.setTextColor(menuBoxTC)
   
   term.setCursorPos(1, 2)
   print("------------")
@@ -188,7 +190,8 @@ function drawMenuStart() --Start menu
 end
 
 function drawMenuFile() --Files menu
-  term.setTextColor(1)
+  term.setBackgroundColor(menuBoxC)
+  term.setTextColor(menuBoxTC)
   
   term.setCursorPos(9, 2)
   print("------------")
@@ -202,8 +205,9 @@ function drawMenuFile() --Files menu
 end
 
 function drawMenuContext(contextX, contextY) --Menu for right clicking
-  term.setBackgroundColor(8)
-  term.setTextColor(1)
+  term.setBackgroundColor(menuBoxC)
+  term.setTextColor(menuBoxTC)
+  
   term.setCursorPos(contextX, contextY)
   print("-------------")
   
@@ -224,7 +228,8 @@ function drawMenuContext(contextX, contextY) --Menu for right clicking
 end
 
 function drawMenuWord()
-  term.setTextColor(1)
+  term.setBackgroundColor(menuBoxC)
+  term.setTextColor(menuBoxTC)
   
   term.setCursorPos(1, 2)
   print("------------")
@@ -252,7 +257,8 @@ function drawMenuWord()
 end
 
 function drawMenuNew()
-  term.setTextColor(1)
+  term.setBackgroundColor(menuBoxC)
+  term.setTextColor(menuBoxTC)
   
   term.setCursorPos(1, 2)
   print("--------------")
@@ -277,7 +283,8 @@ function drawMenuNew()
 end
 
 function drawMenuGames() --Start menu
-  term.setTextColor(1)
+  term.setBackgroundColor(menuBoxC)
+  term.setTextColor(menuBoxTC)
   
   term.setCursorPos(27, 2)
   print("------------")
@@ -293,7 +300,8 @@ function drawMenuGames() --Start menu
 end
 
 function drawMenuUtils() --Utils menu
-  term.setTextColor(1)
+  term.setBackgroundColor(menuBoxC)
+  term.setTextColor(menuBoxTC)
   
   term.setCursorPos(9, 2)
   print("------------")
