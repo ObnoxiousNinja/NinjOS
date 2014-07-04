@@ -5,6 +5,26 @@ Purpose: A component in my custom Operating System
 Compatibility: Advanced Computers
 --]]
 
+--[[
+VALID COLOR CODES:
+
+White: 1
+Orange: 2
+Magenta: 4
+Light Blue: 8
+Yellow: 16
+Lime: 32
+Pink: 64
+Light Gray: 256
+Cyan: 512
+Purple: 1024
+Blue: 2048
+Brown: 4096
+Green: 8192
+Red: 16384
+Black: 32768
+]]
+
 titleBarC = 2048
 titleBarTC = 1
 background = 32768
@@ -149,15 +169,21 @@ function drawMenuStart() --Start menu
   print("------------")
   
   term.setCursorPos(1, 3)
-  print("| Shutdown |")
+  print("|Shutdown  |")
   
   term.setCursorPos(1, 4)
-  print("| Restart  |")
+  print("|Restart   |")
   
   term.setCursorPos(1, 5)
-  print("| New      |")
+  print("|New       |")
   
   term.setCursorPos(1, 6)
+  print("------------")
+  
+  term.setCursorPos(1, 7)
+  print("|Uninstall |")
+  
+  term.setCursorPos(1, 8)
   print("------------")
 end
 
