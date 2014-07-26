@@ -5,17 +5,31 @@ Purpose: A component in my custom Operating System
 Compatibility: Advanced Computers
 --]]
 
+term.setBackgroundColor(32768)
 term.clear()
 term.setCursorPos(1, 1)
+
+x = 0
+
 print("Are you sure you want to uninstall NinjOS? (y/n)")
 input = read()
 
+files = {"OS.MAIN", "GUI_API", "new_account", ".term", ".startup", "gitget", "json", ".background", ".icons", "LuaIDE", "nPaintPro", "nPaintPro_start"}
+
 sleep(1)
 if input == "y" then
-  fs.delete("NinjOS")
-  sleep(1)
-  shell.run("startup")
+  for i,v in ipairs(files) do
+    x = x + 1
+	local file = files[x]
+	if file then
+	  fs.delete(file)
+	else
+	  term.clear()
+	  term.setCursorPos(1, 1)
+	  shell.run("shell")
+	end
+  end
   else
-    print("Running NinjOS")
-	shell.run("openOS")
+    print("Running NinjOS...")
+	shell.run("startup")
 end
