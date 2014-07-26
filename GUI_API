@@ -25,13 +25,34 @@ Red: 16384
 Black: 32768
 ]]
 
-titleBarC = 2048
-titleBarTC = 1
-menuBoxTC = 1
-background = 32768
+titleBarC = 2048   --Color of top bar
+titleBarTC = 1     --Color of top bar text
+menuBoxC = 2048    --Color of menu box
+menuBoxTC = 1      --Color of menu box chat
+background = 32768 --Self-explanatory
 
 --DO NOT TOUCH ANYTHING BELOW THIS LINE!
 version = "v1.2a"
+
+function branding()
+  backgroundImage = paintutils.loadImage(".background") --Logo
+  paintutils.drawImage(backgroundImage, 4, 3)
+
+  term.setBackgroundColor(32768) --Property claim
+  term.setCursorPos(27, 18)
+  print("Legal Property of AjinnDa")
+  
+  term.setBackgroundColor(32768) --Version number
+  term.setCursorPos(27, 19)
+  print("Version: "..version)
+end
+
+function digitaClock()
+  term.setCursorPos(42, 1) --Internal clock
+  time = os.time()
+  formattedTime = textutils.formatTime(time, false)
+  print(formattedTime)
+end
 
 function titleBar() --Main title bar
   term.setCursorPos(1, 1)
@@ -60,59 +81,29 @@ function titleBarNew() --New Account title bar
   print("[Accounts]")
 end
 
-function titleBarWord() --Word title bar
-  term.setCursorPos(1, 1)
-  term.setBackgroundColor(titleBarC)
-  term.setTextColor(titleBarTC)
-  term.clearLine()
-  term.setCursorPos(1, 1)
-  print("[Word]")
-end
-
 function drawDesktop() --For the main page
   term.setBackgroundColor(background)
   term.clear()
   
-  backgroundImage = paintutils.loadImage("NinjOS/.background") --Logo
-  paintutils.drawImage(backgroundImage, 4, 3)
-  
-  icon = paintutils.loadImage("NinjOS/.icons") --Item icons
+  icon = paintutils.loadImage(".icons") --Item icons
   paintutils.drawImage(icon, 2, 4)
   term.setTextColor(1)
   term.setCursorPos(2, 9)
   term.setBackgroundColor(32768)
   print("Icon")
   
-  term.setBackgroundColor(32768) --Property claim
-  term.setCursorPos(27, 18)
-  print("Legal Property of AjinnDa")
-  
-  term.setBackgroundColor(32768) --Version number
-  term.setCursorPos(27, 19)
-  print("Version: "..version)
+  branding()
   
   titleBar()
   
-  term.setCursorPos(42, 1) --Internal clock
-  time = os.time()
-  formattedTime = textutils.formatTime(time, false)
-  print(formattedTime)
+  digitaClock()
 end
 
 function drawDesktopStartup() --For the startup page
   term.setBackgroundColor(background)
   term.clear()
   
-  backgroundImage = paintutils.loadImage("NinjOS/.background") --Logo
-  paintutils.drawImage(backgroundImage, 4, 3)
-  
-  term.setBackgroundColor(32768) --Property claim
-  term.setCursorPos(27, 19)
-  print("Legal Property of AjinnDa")
-  
-  term.setBackgroundColor(32768) --Version number
-  term.setCursorPos(27, 19)
-  print("Version: "..version)
+  branding()
   
   titleBar()
 end
@@ -121,46 +112,22 @@ function drawDesktopWord() --For the word page
   term.setBackgroundColor(background)
   term.clear()
   
-  backgroundImage = paintutils.loadImage("NinjOS/.background") --Logo
-  paintutils.drawImage(backgroundImage, 4, 3)
-  
-  term.setBackgroundColor(32768) --Property claim
-  term.setCursorPos(27, 19)
-  print("Legal Property of AjinnDa")
-  
-  term.setBackgroundColor(32768) --Version number
-  term.setCursorPos(27, 19)
-  print("Version: "..version)
+  branding()
   
   titleBarWord()
   
-  term.setCursorPos(42, 1) --Internal clock
-  time = os.time()
-  formattedTime = textutils.formatTime(time, false)
-  print(formattedTime)
+  digitaClock()
 end
 
 function drawDesktopNew() --For New Account page
   term.setBackgroundColor(background)
   term.clear()
   
-  backgroundImage = paintutils.loadImage("NinjOS/.background") --Logo
-  paintutils.drawImage(backgroundImage, 4, 3)
-  
-  term.setBackgroundColor(32768) --Property claim
-  term.setCursorPos(27, 19)
-  print("Legal Property of AjinnDa")
-  
-  term.setBackgroundColor(32768) --Version number
-  term.setCursorPos(27, 19)
-  print("Version: "..version)
+  branding()
   
   titleBarNew()
   
-  term.setCursorPos(42, 1) --Internal clock
-  time = os.time()
-  formattedTime = textutils.formatTime(time, false)
-  print(formattedTime)
+  digitaClock()
 end
 
 function drawMenuStart() --Start menu
