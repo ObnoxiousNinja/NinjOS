@@ -5,7 +5,13 @@ Purpose: A component in my custom Operating System
 Compatibility: Advanced Computers
 --]]
 
-os.loadAPI("NinjOS/GUI_API")
+os.loadAPI("GUI_API")
+
+function createShell(path, name)
+  local tabID = multishell.launch({}, path)
+	  multishell.setTitle(tabID, name)
+	  multishell.setFocus(tabID)
+end
 
 slc = 0
 background = 32768
@@ -31,7 +37,7 @@ local event, button, x, y = os.pullEventRaw()
 		slc = 1
 	
 	  elseif x >= 17 and x <= 25 and y == 1 and button == 1 then --Console
-	    local tabID = multishell.launch({}, "rom/programs/shell")
+	    local tabID = multishell.launch({}, ".term")
 		multishell.setTitle(tabID, "CraftOS")
 		multishell.setFocus(tabID)
 		
@@ -77,44 +83,36 @@ local event, button, x, y = os.pullEventRaw()
 	  
 		--Utils menu
 	elseif x >= 10 and x <= 17 and y == 3 and button == 1 then slc = 0
-	  local tabID = multishell.launch({}, "NinjOS/nPaintPro_start")
-	  multishell.setTitle(tabID, "NPaintPro")
-	  multishell.setFocus(tabID)
+      createShell("nPaintPro_start", "NPaintPro")
 	  
 	elseif x >= 10 and x <= 17 and y == 4 and button == 1 then slc = 0
-	  local tabID = multishell.launch({}, "NinjOS/LuaIDE")
-	  multishell.setTitle(tabID, "LuaIDE")
-	  multishell.setFocus(tabID)
+	  createShell("LuaIDE", "LuaIDE")
 		
 		--Game menu
 	elseif x >= 27 and x <= 33 and y == 3 and button == 1 then slc = 0 --For the Worm button
-	  local tabID = multishell.launch({}, "rom/programs/fun/worm")
-	  multishell.setTitle(tabID, "Worm")
-	  multishell.setFocus(tabID)
-		
+	  createShell("rom/programs/fun/worm", "Worm")
+
     elseif x >= 27 and x <= 33 and y == 4 and button == 1 then slc = 0 --For the Redirect button
-	  local tabID = multishell.launch({}, "rom/programs/fun/advanced/redirection")
-	  multishell.setTitle(tabID, "Redirection")
-	  multishell.setFocus(tabID)
+	  createShell("rom/programs/fun/advanced/redirection", "Redirection")
 	
     else slc = 0
       GUI_API.drawDesktop()
 	  
     end
 	  elseif slc == 2 then --Context menu
-        if x >= contextX and x <= contextX+13 and y == contextY+1 and button == 1 then slc = 0 --Edit GUI
+        if x >= contextX and x <= contextX + 13 and y == contextY + 1 and button == 1 then slc = 0 --Edit GUI
           shell.run("edit", "GUI_API")
           GUI_API.drawDesktop()
 		
-          elseif x >= contextX and x <= contextX+13 and y == contextY+2 and button == 1 then slc = 0 --Edit Background
+          elseif x >= contextX and x <= contextX + 13 and y == contextY + 2 and button == 1 then slc = 0 --Edit Background
             shell.run("paint", ".background")
 			GUI_API.drawDesktop()
 			
-		  elseif x >= contextX and x <= contextX+13 and y == contextY+3 and button == 1 then slc = 0 --Edit icon
+		  elseif x >= contextX and x <= contextX + 13 and y == contextY + 3 and button == 1 then slc = 0 --Edit icon
             shell.run("paint", ".icons")
 			GUI_API.drawDesktop()	
 			
-		  elseif x >= contextX and x <= contextX+13 and y == contextY+4 and button == 1 then slc = 0 --File Manager
+		  elseif x >= contextX and x <= contextX + 13 and y == contextY + 4 and button == 1 then slc = 0 --File Manager
 		    shell.run("file") --Does not exist yet
             GUI_API.drawDesktop()
 			
