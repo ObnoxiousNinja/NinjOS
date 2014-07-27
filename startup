@@ -71,11 +71,7 @@ if checkRednet() then
         print("Logging in...")
         sleep(1)
         
-        local tabID = multishell.launch({}, "OS.MAIN")
-        multishell.setTitle(tabID, "Home")
-        multishell.setFocus(tabID)
-        
-	shell.run("exit")
+	shell.run("OS.MAIN")
 	
     else
       resetColor(16384)
