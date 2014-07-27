@@ -5,9 +5,23 @@ Purpose: A component in my Operating system
 Compatibility: Advanced computers
 --]]
 
-os.loadAPI("NinjOS/GUI_API")
+os.loadAPI("GUI_API")
 
 os.pullEvent = os.pullEventRaw
+
+function getSide()
+  for _, side in ipairs(rs.getSides()) do
+    if rednet.isOpen(side) then
+      return side
+	elseif peripheral.getType(side) == "modem" then
+	  rednet.open(side)
+	  return side
+	else
+	  print("No modem detected.  Please add a wireless modem.")
+    end
+  end
+end
+end
 
 function checkRednet()
   for _, side in ipairs(rs.getSides()) do
@@ -31,7 +45,7 @@ function openRednet()
   end
 end
 
-background = 32768
+local background = 32768
 term.clear()
 
 term.setCursorPos(1, 1)
@@ -39,22 +53,22 @@ print("LockTite Premium v1.3.2")
 print("Property of AjinnDA")
 
 write("Username: ")
-username = read()
+local username = read()
 
 write("Password: ")
-password = read("*")
+local password = read("*")
 
-modemSide = openRednet()
+local modemSide = openRednet()
   if modemSide == nil then
     print("No wireless modem connected")
-	sleep(5)
+	sleep(3)
 	shell.run("startup")
   end
 
 if checkRednet() then
   term.setBackgroundColor(background)
   if username == "test" and password == "test" then
-    modem = peripheral.wrap("back")
+    modem = peripheral.wrap(getSide())
 	modem.transmit(1, 1, "Username: "..username.." Password: "..password)  
 	
 	    term.clear()
