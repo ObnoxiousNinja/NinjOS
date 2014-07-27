@@ -9,18 +9,18 @@ os.loadAPI("GUI_API")
 
 function createShell(path, name)
   local tabID = multishell.launch({}, path)
-	  multishell.setTitle(tabID, name)
-	  multishell.setFocus(tabID)
+  multishell.setTitle(tabID, name)
+  multishell.setFocus(tabID)
 end
 
-slc = 0
-background = 32768
+local slc = 0
+local background = 32768
 
 term.clear()
 term.setBackgroundColor(background)
 
-contextX = 0
-contextY = 0
+local contextX = 0
+local contextY = 0
 
 GUI_API.drawDesktop()
 
@@ -37,9 +37,7 @@ local event, button, x, y = os.pullEventRaw()
 		slc = 1
 	
 	  elseif x >= 17 and x <= 25 and y == 1 and button == 1 then --Console
-	    local tabID = multishell.launch({}, ".term")
-		multishell.setTitle(tabID, "CraftOS")
-		multishell.setFocus(tabID)
+	    createShell(".term", "CraftOS")
 		
       elseif x >= 27 and x <= 33 and y == 1 and button == 1 then --Games
 	    GUI_API.drawMenuGames()
