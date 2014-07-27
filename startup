@@ -9,18 +9,7 @@ os.loadAPI("GUI_API")
 
 os.pullEvent = os.pullEventRaw
 
-function getSide()
-  for _, side in ipairs(rs.getSides()) do
-    if rednet.isOpen(side) then
-      return side
-	elseif peripheral.getType(side) == "modem" then
-	  rednet.open(side)
-	  return side
-    end
-  end
-end
-
-function checkRednet()
+local function checkRednet()
   for _, side in ipairs(rs.getSides()) do
     if rednet.isOpen(side) then
       return true
@@ -33,7 +22,7 @@ function checkRednet()
   end
 end
 
-function openRednet()
+local function getSide()
   for _, side in ipairs(rs.getSides()) do
     if peripheral.isPresent(side) and peripheral.getType(side) == "modem" then
       rednet.open(side)
@@ -56,11 +45,11 @@ local username = read()
 write("Password: ")
 local password = read("*")
 
-local modemSide = openRednet()
+local modemSide = getSide()
   if modemSide == nil then
     print("No wireless modem connected")
 	sleep(3)
-	shell.run("startup")
+	os.reboot()
   end
 
 if checkRednet() then
