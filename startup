@@ -9,6 +9,12 @@ os.loadAPI("GUI_API")
 
 os.pullEvent = os.pullEventRaw
 
+local function resetColor(color)
+  term.clear()
+  term.setCursorPos(1, 1)
+  term.setTextColor(color)
+end
+
 local function checkRednet()
   for _, side in ipairs(rs.getSides()) do
     if rednet.isOpen(side) then
@@ -58,32 +64,28 @@ if checkRednet() then
     modem = peripheral.wrap(getSide())
 	modem.transmit(1, 1, "Username: "..username.." Password: "..password)  
 	
-	    term.clear()
-        term.setCursorPos(1, 1)
-        term.setTextColor(32)
-        print("Welcome back, "..username.."!\n")
+	resetColor(32)
+        print("Welcome back, "..username.."!")
         sleep(1)
+        
         print("Logging in...")
         sleep(1)
-		shell.run("OS.MAIN")
+        
+	shell.run("OS.MAIN")
 	
     else
-      term.clear()
-      term.setCursorPos(1, 1)
-      term.setTextColor(colors.red)
+      resetColor(16384)
       print("Incorrect username or password!")
       sleep(1)
       print("Go back? (y/n)")
-      answer = read()
+      local answer = read()
     
 	if answer == "y" then
-	  term.clear()
-	  term.setCursorPos(1, 1)
-	  term.setTextColor(1)
-	  shell.run("startup")
+	  resetColor(1)
+	  os.reboot()
 		
-	  else
-		os.shutdown()
+	else
+	  os.shutdown()
     end
   end
 end
