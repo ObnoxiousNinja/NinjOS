@@ -48,6 +48,7 @@ local background = 32768
 term.clear()
 
 term.setCursorPos(1, 1)
+GUI_API.branding()
 print("LockTite Premium v1.3.2")
 print("Property of AjinnDA")
 
