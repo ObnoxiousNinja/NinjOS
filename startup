@@ -21,7 +21,6 @@ function getSide()
     end
   end
 end
-end
 
 function checkRednet()
   for _, side in ipairs(rs.getSides()) do
