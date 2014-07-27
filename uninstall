@@ -9,12 +9,12 @@ term.setBackgroundColor(32768)
 term.clear()
 term.setCursorPos(1, 1)
 
-x = 0
+local x = 0
 
 print("Are you sure you want to uninstall NinjOS? (y/n)")
-input = read()
+local input = read()
 
-files = {"OS.MAIN", "GUI_API", "new_account", ".term", ".startup", "startup", "gitget", "json", ".background", ".icons", "LuaIDE", "nPaintPro", "nPaintPro_start"}
+local files = {"OS.MAIN", "GUI_API", "new_account", ".term", ".startup", "startup", "gitget", "json", ".background", ".icons", "LuaIDE", "nPaintPro", "nPaintPro_start"}
 
 sleep(1)
 if input == "y" then
@@ -25,9 +25,7 @@ if input == "y" then
 	  print("Deleting "..file)
 	  fs.delete(file)
 	else
-	  term.clear()
-	  term.setCursorPos(1, 1)
-	  shell.run("shell")
+	  os.reboot()
 	end
   end
   else
