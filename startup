@@ -16,8 +16,6 @@ function getSide()
 	elseif peripheral.getType(side) == "modem" then
 	  rednet.open(side)
 	  return side
-	else
-	  print("No modem detected.  Please add a wireless modem.")
     end
   end
 end
