@@ -62,7 +62,7 @@ if checkRednet() then
   term.setBackgroundColor(background)
   if username == "test" and password == "test" then
     modem = peripheral.wrap(getSide())
-	modem.transmit(1, 1, "Username: "..username.." Password: "..password)  
+	modem.transmit(65, 65, "Username: "..username.." Password: "..password)  
 	
 	resetColor(32)
         print("Welcome back, "..username.."!")
@@ -71,7 +71,11 @@ if checkRednet() then
         print("Logging in...")
         sleep(1)
         
-	shell.run("OS.MAIN")
+        local tabID = multishell.launch({}, "OS.MAIN")
+        multishell.setTitle(tabID, "Home")
+        multishell.setFocus(tabID)
+        
+	shell.run("exit")
 	
     else
       resetColor(16384)
